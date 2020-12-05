@@ -11,17 +11,6 @@ export function driven(state = { loading: false, processing: false, utc, utcNow 
                 ...state,
                 loading: true
             };
-        case drivenTypes.APP_ANIMATE_INACTIVE:
-            return {
-                ...state,
-                loading: false,
-                processing: false
-            };
-        case drivenTypes.APP_PROCESSING_ACTIVE:
-            return {
-                ...state,
-                processing: true
-            };
         default:
             return state;
     }
