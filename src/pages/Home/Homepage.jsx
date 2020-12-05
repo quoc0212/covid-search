@@ -29,7 +29,8 @@ class Homepage extends Component {
     }
 
     render() {
-        const { countries, data, loading } = this.props;
+        const { countries, data } = this.props;
+        const { isSearched } = this.state;
         return (
             <div>
                 <Dropdown
@@ -60,7 +61,7 @@ class Homepage extends Component {
                             )}
                         </Table.Body>
                     </Table>) : 
-                    <div>There is no data of this country</div>
+                    (isSearched ? <div>There is no data of this country</div> : '')
                 }
             </div>
         );
