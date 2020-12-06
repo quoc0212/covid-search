@@ -90,7 +90,7 @@ class Homepage extends Component {
                 </div>
                 <div className="result-wrapper">
                     {isSearched && data &&
-                        <CountryDataTable data={data}/> 
+                        <CountryDataTable data={data.reverse()}/> 
                     }
                 </div>
             </div>
