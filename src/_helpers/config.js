@@ -51,7 +51,6 @@ export const axiosMiddlewareConfig = {
                         type: drivenTypes.APP_ANIMATE_INACTIVE
                     });
 
-                    //history.push(I18n.t('route.ERRORS'));
                     return Promise.reject(error);
                 }
             }
