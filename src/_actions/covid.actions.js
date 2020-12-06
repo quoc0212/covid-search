@@ -12,7 +12,6 @@ function getAll() {
             request: {
                 method: 'GET',
                 url: 'countries'
-            
             },
             options: {
                 onSuccess({ getState, dispatch, response }) {
@@ -21,6 +20,7 @@ function getAll() {
                             type: covidType.GET_ALL_COUNTRY_SUCCESS,
                             datas: response.data
                         });
+                        localStorage.setItem('countries', JSON.stringify(response.data));
                     }
                 }
             }

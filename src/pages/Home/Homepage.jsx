@@ -14,12 +14,11 @@ class Homepage extends Component {
             country: null,
             fromDate: new Date(),
             toDate: new Date(),
-            isSearched: false
+            isSearched: false,
         };
         this.handleCountryChange = this.handleCountryChange.bind(this); 
         this.handleFromDateChange = this.handleFromDateChange.bind(this);
         this.handleToDateChange = this.handleToDateChange.bind(this);
-
     }
 
     componentDidMount() {
@@ -44,42 +43,56 @@ class Homepage extends Component {
         this.props.dispatch(covidActions.getByCountry(country, moment(fromDate).format("YYYY-MM-DD"), moment(toDate).format("YYYY-MM-DD")));
     }
 
+    handleClearButtonClick = () => {
+        this.setState({
+            isSearched: false
+        });
+    }
+
     render() {
         const { countries, data } = this.props;
         const { country, fromDate, toDate, isSearched } = this.state;
         return (
             <div className="container">
-                <div>
-                    <Label size="large">Country</Label>
-                    <Dropdown
-                        placeholder='Select Country'
-                        search
-                        selection
-                        options={countries}
-                        onChange={this.handleCountryChange}
-                    />
+                <div className="search-wrapper">
+                    <div>
+                        <Label className="country-label" size="large">Country</Label>
+                        <Dropdown
+                            placeholder='Select Country'
+                            search
+                            selection
+                            options={countries}
+                            onChange={this.handleCountryChange}
+                        />
+                    </div>
+                    <div>
+                        <Label className="from-label">From Date</Label>
+                        <DatePicker 
+                            className="from-date"
+                            dateFormat="yyyy-MM-dd"
+                            selected={fromDate && fromDate !== "" ? fromDate : new Date()}
+                            type="date"
+                            onChange={this.handleFromDateChange} />
+
+                        <Label className="to-label">To Date</Label>
+                        <DatePicker 
+                            className="to-date"
+                            dateFormat="yyyy-MM-dd"
+                            selected={toDate && toDate !== "" ? toDate : new Date()}
+                            type="date"
+                            onChange={this.handleToDateChange} />
+                    </div>
+
                 </div>
-                <div>
-                    <Label>From Date</Label>
-                    <DatePicker 
-                        dateFormat="yyyy-MM-dd"
-                        selected={fromDate && fromDate !== "" ? fromDate : new Date()}
-                        type="date"
-                        onChange={this.handleFromDateChange} />
-
-                    <Label>To Date</Label>
-                    <DatePicker 
-                        dateFormat="yyyy-MM-dd"
-                        selected={toDate && toDate !== "" ? toDate : new Date()}
-                        type="date"
-                        onChange={this.handleToDateChange} />
+                <div className="button-wrapper">
+                    <Button className="btn-search" primary disabled={!country} onClick={this.handleSearchButtonClick}>Search</Button>
+                    <Button className="btn-clear" onClick={this.handleClearButtonClick}>Clear</Button>
                 </div>
-
-                <Button primary disabled={!country} onClick={this.handleSearchButtonClick}>Search</Button>
-
-                {isSearched && data &&
-                    <CountryDataTable data={data}/> 
-                }
+                <div className="result-wrapper">
+                    {isSearched && data &&
+                        <CountryDataTable data={data}/> 
+                    }
+                </div>
             </div>
         );
     }

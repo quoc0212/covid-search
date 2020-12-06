@@ -5,3 +5,28 @@
 .container div {
   margin-bottom: 10px;
 }
+
+.search-wrapper {
+  padding-top: 30px;
+  width: 800px;
+  text-align: left;
+  margin: auto;
+}
+
+.search-wrapper .dropdown {
+  width: 100%;
+}
+.search-wrapper .from-date, .search-wrapper .to-date {
+  line-height: 1.5;
+}
+
+.button-wrapper {
+  width: 800px;
+  text-align: center;
+  margin: auto;
+}
+
+.result-wrapper {
+  width: 1200px;
+  margin: auto;
+}

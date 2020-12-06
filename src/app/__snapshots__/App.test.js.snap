@@ -1,0 +1,197 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`test render Homepage no crash 1`] = `
+<div
+  className="container"
+>
+  <div
+    className="search-wrapper"
+  >
+    <div>
+      <div
+        className="ui large label country-label"
+        onClick={[Function]}
+      >
+        Country
+      </div>
+      <div
+        aria-expanded={false}
+        className="ui search selection dropdown"
+        onBlur={[Function]}
+        onChange={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        onMouseDown={[Function]}
+        role="combobox"
+      >
+        <input
+          aria-autocomplete="list"
+          autoComplete="off"
+          className="search"
+          onChange={[Function]}
+          style={
+            Object {
+              "width": undefined,
+            }
+          }
+          tabIndex={0}
+          type="text"
+          value=""
+        />
+        <div
+          aria-atomic={true}
+          aria-live="polite"
+          className="divider default text"
+          role="alert"
+        >
+          Select Country
+        </div>
+        <i
+          aria-hidden="true"
+          className="dropdown icon"
+          onClick={[Function]}
+        />
+        <div
+          className="menu transition"
+          role="listbox"
+        >
+          <div
+            className="message"
+          >
+            No results found.
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div
+        className="ui label from-label"
+        onClick={[Function]}
+      >
+        From Date
+      </div>
+      <div
+        className="react-datepicker-wrapper"
+      >
+        <div
+          className="react-datepicker__input-container"
+        >
+          <input
+            className="from-date"
+            disabled={false}
+            onBlur={[Function]}
+            onChange={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            readOnly={false}
+            type="text"
+            value="2020-12-06"
+          />
+        </div>
+      </div>
+      <div
+        className="ui label to-label"
+        onClick={[Function]}
+      >
+        To Date
+      </div>
+      <div
+        className="react-datepicker-wrapper"
+      >
+        <div
+          className="react-datepicker__input-container"
+        >
+          <input
+            className="to-date"
+            disabled={false}
+            onBlur={[Function]}
+            onChange={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            readOnly={false}
+            type="text"
+            value="2020-12-06"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    className="button-wrapper"
+  >
+    <button
+      className="ui primary disabled button btn-search"
+      disabled={true}
+      onClick={[Function]}
+      tabIndex={-1}
+    >
+      Search
+    </button>
+    <button
+      className="ui button btn-clear"
+      onClick={[Function]}
+    >
+      Clear
+    </button>
+  </div>
+  <div
+    className="result-wrapper"
+  />
+</div>
+`;
+
+exports[`test render no crash 1`] = `
+<table
+  className="ui celled table"
+>
+  <thead
+    className=""
+  >
+    <tr
+      className=""
+    >
+      <th
+        className=""
+      >
+        Cases
+      </th>
+      <th
+        className=""
+      >
+        Status
+      </th>
+      <th
+        className=""
+      >
+        Date
+      </th>
+      <th
+        className=""
+      >
+        Country
+      </th>
+      <th
+        className=""
+      >
+        Country Code
+      </th>
+    </tr>
+  </thead>
+  <tbody
+    className=""
+  >
+    <tr
+      className=""
+    >
+      <td
+        className=""
+      >
+        No Data Found
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;
