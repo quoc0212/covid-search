@@ -1,17 +1,25 @@
 ﻿import React, { Component } from 'react';
-
+import moment from 'moment';
 import { connect } from 'react-redux';
 import { covidActions } from '../../_actions';
-import { Button, Dropdown, Table } from 'semantic-ui-react';
+import { Button, Dropdown, Label } from 'semantic-ui-react';
+import DatePicker from 'react-datepicker';
+import "react-datepicker/dist/react-datepicker.css";
+import CountryDataTable from '../../_components/home/CountryDataTable';
 
 class Homepage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            country: {},
+            country: null,
+            fromDate: new Date(),
+            toDate: new Date(),
             isSearched: false
         };
         this.handleCountryChange = this.handleCountryChange.bind(this); 
+        this.handleFromDateChange = this.handleFromDateChange.bind(this);
+        this.handleToDateChange = this.handleToDateChange.bind(this);
+
     }
 
     componentDidMount() {
@@ -22,46 +30,55 @@ class Homepage extends Component {
         this.setState({country: data.value});
     }
 
+    handleFromDateChange = (value) => {
+        this.setState({fromDate: value});
+    }
+
+    handleToDateChange = (value) => {
+        this.setState({toDate: value});
+    }
+
     handleSearchButtonClick  = () => {
-        const { country } = this.state;
+        const { country, fromDate, toDate } = this.state;
         this.setState({isSearched: true});
-        this.props.dispatch(covidActions.getByCountry(country));
+        this.props.dispatch(covidActions.getByCountry(country, moment(fromDate).format("YYYY-MM-DD"), moment(toDate).format("YYYY-MM-DD")));
     }
 
     render() {
         const { countries, data } = this.props;
-        const { isSearched } = this.state;
+        const { country, fromDate, toDate, isSearched } = this.state;
         return (
-            <div>
-                <Dropdown
-                    placeholder='Select Country'
-                    search
-                    selection
-                    options={countries}
-                    onChange={this.handleCountryChange}
-                />
+            <div className="container">
+                <div>
+                    <Label size="large">Country</Label>
+                    <Dropdown
+                        placeholder='Select Country'
+                        search
+                        selection
+                        options={countries}
+                        onChange={this.handleCountryChange}
+                    />
+                </div>
+                <div>
+                    <Label>From Date</Label>
+                    <DatePicker 
+                        dateFormat="yyyy-MM-dd"
+                        selected={fromDate && fromDate !== "" ? fromDate : new Date()}
+                        type="date"
+                        onChange={this.handleFromDateChange} />
 
-                <Button primary onClick={this.handleSearchButtonClick}>Search</Button>
-                {data && data.length > 0 ? 
-                    (<Table celled>
-                        <Table.Header>
-                            <Table.Row>
-                                <Table.HeaderCell>Cases</Table.HeaderCell>
-                                <Table.HeaderCell>Status</Table.HeaderCell>
-                                <Table.HeaderCell>Date</Table.HeaderCell>
-                            </Table.Row>
-                        </Table.Header>
-                        <Table.Body>
-                            {data.map((d, k) => 
-                                <Table.Row key={k}>
-                                    <Table.Cell>{d["Cases"]}</Table.Cell>
-                                    <Table.Cell>{d["Status"]}</Table.Cell>
-                                    <Table.Cell>{d["Date"]}</Table.Cell>
-                                </Table.Row>
-                            )}
-                        </Table.Body>
-                    </Table>) : 
-                    (isSearched ? <div>There is no data of this country</div> : '')
+                    <Label>To Date</Label>
+                    <DatePicker 
+                        dateFormat="yyyy-MM-dd"
+                        selected={toDate && toDate !== "" ? toDate : new Date()}
+                        type="date"
+                        onChange={this.handleToDateChange} />
+                </div>
+
+                <Button primary disabled={!country} onClick={this.handleSearchButtonClick}>Search</Button>
+
+                {isSearched && data &&
+                    <CountryDataTable data={data}/> 
                 }
             </div>
         );

@@ -1,13 +1,10 @@
 import React from 'react';
 import { Routers } from './Routers';
 import { connect } from 'react-redux';
-import 'semantic-ui-css/semantic.min.css'
+import 'semantic-ui-css/semantic.min.css';
+import './App.css';
 
 class App extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         return (
             <Routers />

@@ -28,13 +28,13 @@ function getAll() {
     };
 }
 
-function getByCountry(country) {
+function getByCountry(country, fromDate, toDate) {
     return {
         type: drivenTypes.APP_LOADING_ACTIVE,
         payload: {
             request: {
                 method: 'GET',
-                url: `country/${country}/status/confirmed?from=2020-03-01T00:00:00Z&to=2020-03-05T00:00:00Z`
+                url: `country/${country}/status/confirmed?from=${fromDate}&to=${toDate}`
             },
             options: {
                 onSuccess({ getState, dispatch, response }) {
